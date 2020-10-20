@@ -74,12 +74,12 @@ int reading_array (long long need_clear_array[], struct interval_t interval) {
             ++clear_array_size;
         }
         if (number >= interval.point_to && interval.amount_to == -1) {
-            fprintf (stdout, "%lld ", number);
-            ++stdout_array_size;
+           fprintf(stderr, "%lld ", number);
+            ++error_array_size;
         }
         if (number <= interval.point_from && interval.amount_from == -1) {
-            fprintf(stderr, "%lld ", number);
-            ++error_array_size;
+            fprintf (stdout, "%lld ", number);
+            ++stdout_array_size;
         }
 
     }
