@@ -63,7 +63,7 @@ int review_entering_args(int argc, char* argv[], struct interval_t* interval1) {
 
 int reading_array (long long need_clear_array[], struct interval_t interval) {
     char space;
-    long long stdout_array[MAX_SIZE_ARRAY], error_array[MAX_SIZE_ARRAY], number;
+    long long number;
     int clear_array_size = 0, stdout_array_size = 0, error_array_size = 0;
     while (space != '\n' && clear_array_size < MAX_SIZE_ARRAY && stdout_array_size < MAX_SIZE_ARRAY && error_array_size < MAX_SIZE_ARRAY) {
         if (scanf("%lld%c",&number ,&space) != 2) {
@@ -74,22 +74,16 @@ int reading_array (long long need_clear_array[], struct interval_t interval) {
             ++clear_array_size;
         }
         if (number >= interval.point_to && interval.amount_to == -1) {
-            stdout_array[stdout_array_size] = number;
+            fprintf (stdout, "%lld ", number);
             ++stdout_array_size;
         }
         if (number <= interval.point_from && interval.amount_from == -1) {
-            error_array[error_array_size] = number;
-           ++error_array_size;
+            fprintf(stderr, "%lld ", number);
+            ++error_array_size;
         }
 
     }
 
-    for (int i = 0; i < stdout_array_size; i++) {
-        fprintf (stdout, "%lld ", stdout_array[i]);
-    }
-    for (int i = 0; i < error_array_size; i++ ) {
-        fprintf(stderr, "%lld ", error_array[i]);
-    }
     return clear_array_size;
 }
 
