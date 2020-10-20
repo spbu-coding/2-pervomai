@@ -34,7 +34,7 @@ int review_entering_args(int argc, char* argv[], struct interval_t* interval1) {
     if (interval1->amount_from > 1 || interval1->amount_to > 1) {
         return -3;
     }
-    if (interval1->amount_from != 1 && interval1->amount_to != 1) {
+    if (interval1->amount_from < 1 && interval1->amount_to < 1) {
         return -4;
     }
 
