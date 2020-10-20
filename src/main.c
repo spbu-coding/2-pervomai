@@ -107,7 +107,7 @@ int main(int argc, char* argv[]) {
     struct interval_t interval = {0, 0, 0, 0};
     int review_args = review_entering_args(argc,argv, &interval);
     if(review_args < 0) {
-        return 1;
+        return review_args;
     }
     long long clear_array[MAX_SIZE_ARRAY];
     int clear_array_size = reading_array(clear_array,interval);
