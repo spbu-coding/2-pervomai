@@ -49,7 +49,7 @@ int review_entering_args(int argc, char* argv[], struct interval_t* interval1) {
             interval1->point_from = possible_from;
             interval1->amount_from = -1;
         }
-        if (strncmp(argv[j], "--to=", 5) == 0 && interval1->amount_to == 1) {
+        else if (strncmp(argv[j], "--to=", 5) == 0 && interval1->amount_to == 1) {
             possible_to = strtoll(strchr(argv[j], '=') + 1, &pEnd, 10);
             if (*pEnd != '\0') {
               possible_to = 0;
@@ -68,7 +68,7 @@ int reading_array (long long need_clear_array[], struct interval_t interval) {
     while (space != '\n' && clear_array_size < MAX_SIZE_ARRAY && stdout_array_size < MAX_SIZE_ARRAY && error_array_size < MAX_SIZE_ARRAY) {
         if (scanf("%lld%c",&number ,&space) != 2) {
           return -1;
-        };
+        }
         if ((number > interval.point_from || interval.amount_from == 0) && (number < interval.point_to || interval.amount_to == 0)) {
             need_clear_array[clear_array_size] = number;
             ++clear_array_size;
@@ -113,9 +113,7 @@ int main(int argc, char* argv[]) {
     int clear_array_size = reading_array(clear_array,interval);
     long long new_clear_array[clear_array_size];
     memcpy(new_clear_array, clear_array, clear_array_size * sizeof(long long));
-
-
-   BubbleSort(new_clear_array, clear_array_size);
+    BubbleSort(new_clear_array, clear_array_size);
     int counting_shifts = counting_shifts_in_array(clear_array, new_clear_array, clear_array_size);
     return counting_shifts;
 }
